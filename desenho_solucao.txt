@@ -1,0 +1,79 @@
+			Componentes da Solução
+
+Serviço de Controle de Lançamentos:
+
+Responsável por registrar os débitos e créditos.
+Independente do serviço de consolidação diária.
+Implementação seguindo princípios SOLID e uso de Design Patterns, como Repository Pattern e Service Layer.
+Serviço de Consolidação Diária:
+
+Responsável por calcular o saldo diário consolidado.
+Recebe requisições do serviço de controle de lançamentos.
+Alta disponibilidade para atender aos requisitos de pico de 500 requisições com no máximo 5% de perda.
+Banco de Dados:
+
+Armazena os lançamentos de débitos e créditos.
+Armazena os saldos diários consolidados.
+API REST:
+
+Exposição de endpoints para registrar lançamentos e consultar saldos diários.
+
+
+
+
+Arquitetura
+Controller Layer: Recebe as requisições e delega a lógica de negócio para os serviços.
+Service Layer: Contém a lógica de negócio e interage com os repositórios.
+Repository Layer: Interage com o banco de dados.
+Models: Define as estruturas de dados para os lançamentos e consolidados.
+Utils: Funções auxiliares, como a conexão com o banco de dados.
+
+
+
+
+
+Requisitos Não Funcionais
+Para garantir que o serviço de controle de lançamento não fique indisponível se o sistema de consolidado diário cair, podemos:
+
+Desacoplamento dos Serviços: Utilizar filas (ex.: RabbitMQ, Kafka) para comunicação assíncrona entre os serviços.
+Escalabilidade: Utilizar containers (ex.: Docker) e orquestradores (ex.: Kubernetes) para escalar horizontalmente o serviço de consolidação diária e atender ao pico de requisições.
+Monitoramento e Logging: Implementar ferramentas de monitoramento (ex.: Prometheus, Grafana) e logging (ex.: ELK Stack) para acompanhar o desempenho e detectar falhas.
+
+
+
+
+
+
+
+
+
+
+fluxo_caixa/
+├── app/
+│   ├── controllers/
+│   │   ├── __init__.py
+│   │   ├── lancamento_controller.py
+│   │   └── consolidado_controller.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── lancamento.py
+│   │   └── consolidado.py
+│   ├── repositories/
+│   │   ├── __init__.py
+│   │   ├── lancamento_repository.py
+│   │   └── consolidado_repository.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── lancamento_service.py
+│   │   └── consolidado_service.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   └── db.py
+│   ├── __init__.py
+│   └── main.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_lancamento.py
+│   └── test_consolidado.py
+├── requirements.txt
+└── README.md

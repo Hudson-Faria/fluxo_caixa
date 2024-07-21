@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS lancamentos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    valor REAL NOT NULL,
+    tipo TEXT NOT NULL,
+    data TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS consolidados (
+    data TEXT PRIMARY KEY,
+    saldo REAL NOT NULL
+);
