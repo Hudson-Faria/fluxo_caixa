@@ -1,48 +1,39 @@
-Componentes da Solução
-Serviço de Controle de Lançamentos:
+COMPONENTES DA SOLUÇÃO
 
-Responsável por registrar os débitos e créditos.
-Independente do serviço de consolidação diária.
-Implementação seguindo princípios SOLID e uso de Design Patterns, como Repository Pattern e Service Layer.
-Serviço de Consolidação Diária:
+1) Serviço de Controle de Lançamentos:
 
-Responsável por calcular o saldo diário consolidado.
-Recebe requisições do serviço de controle de lançamentos.
-Alta disponibilidade para atender aos requisitos de pico de 500 requisições com no máximo 5% de perda.
-Banco de Dados:
+- Responsável por registrar os débitos e créditos.
+- Independente do serviço de consolidação diária.
+- Implementação seguindo princípios SOLID e uso de Design Patterns, como Repository Pattern e Service Layer.
 
-Armazena os lançamentos de débitos e créditos.
-Armazena os saldos diários consolidados.
-API REST:
+2) Serviço de Consolidação Diária:
 
-Exposição de endpoints para registrar lançamentos e consultar saldos diários.
+- Responsável por calcular o saldo diário consolidado.
+- Recebe requisições do serviço de controle de lançamentos.
+- Alta disponibilidade para atender aos requisitos de pico de 500 requisições com no máximo 5% de perda.
 
+3) Banco de Dados:
 
+-Armazena os lançamentos de débitos e créditos.
+-Armazena os saldos diários consolidados.
 
+4) API REST:
 
-Arquitetura
-Controller Layer: Recebe as requisições e delega a lógica de negócio para os serviços.
-Service Layer: Contém a lógica de negócio e interage com os repositórios.
-Repository Layer: Interage com o banco de dados.
-Models: Define as estruturas de dados para os lançamentos e consolidados.
-Utils: Funções auxiliares, como a conexão com o banco de dados.
+- Exposição de endpoints para registrar lançamentos e consultar saldos diários.
 
+5) Arquitetura
+- Controller Layer: Recebe as requisições e delega a lógica de negócio para os serviços.
+- Service Layer: Contém a lógica de negócio e interage com os repositórios.
+- Repository Layer: Interage com o banco de dados.
+- Models: Define as estruturas de dados para os lançamentos e consolidados.
+- Utils: Funções auxiliares, como a conexão com o banco de dados.
 
-
-
-
-Requisitos Não Funcionais
+6) Requisitos Não Funcionais
 Para garantir que o serviço de controle de lançamento não fique indisponível se o sistema de consolidado diário cair, podemos:
 
-Desacoplamento dos Serviços: Utilizar filas (ex.: RabbitMQ, Kafka) para comunicação assíncrona entre os serviços.
-Escalabilidade: Utilizar containers (ex.: Docker) e orquestradores (ex.: Kubernetes) para escalar horizontalmente o serviço de consolidação diária e atender ao pico de requisições.
-Monitoramento e Logging: Implementar ferramentas de monitoramento (ex.: Prometheus, Grafana) e logging (ex.: ELK Stack) para acompanhar o desempenho e detectar falhas.
-
-
-
-
-
-
+- Desacoplamento dos Serviços: Utilizar filas (ex.: RabbitMQ, Kafka) para comunicação assíncrona entre os serviços.
+- Escalabilidade: Utilizar containers (ex.: Docker) e orquestradores (ex.: Kubernetes) para escalar horizontalmente o serviço de consolidação diária e atender ao pico de requisições.
+- Monitoramento e Logging: Implementar ferramentas de monitoramento (ex.: Prometheus, Grafana) e logging (ex.: ELK Stack) para acompanhar o desempenho e detectar falhas.
 
 
 

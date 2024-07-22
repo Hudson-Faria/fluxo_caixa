@@ -21,6 +21,10 @@ curl -X POST http://127.0.0.1:5000/consolidado/2024-07-19
 Obter saldo diário:
 curl http://127.0.0.1:5000/consolidado/2024-07-19
 
+EXECUTANDO OS TESTES
 
+Para executar os testes, use o seguinte comando:
+python -m unittest discover -s tests
+Isso irá executar todos os testes definidos nos arquivos `test_lancamento.py` e `test_consolidado.py`, garantindo que os serviços de lançamentos e consolidados funcionem corretamente.
 
 
